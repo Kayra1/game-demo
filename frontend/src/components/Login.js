@@ -24,6 +24,12 @@ class Login extends Component {
             })
         }
     }
+
+    componentDidMount() {
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push("/account")
+        }
+    }
     
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value})

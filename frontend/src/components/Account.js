@@ -22,7 +22,7 @@ class Account extends Component {
 }
 
 Account.propTypes = {
-    logoutUser: propTypes.func.isRequired,
+    logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
 }
 
