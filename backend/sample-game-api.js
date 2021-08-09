@@ -29,6 +29,7 @@ class Game {
   }
 
   initGameData() {
+    // Convert this to get data from MongoDB
     const gameData = storage.getItem(COLOR_CARNIVAL_DATA_KEY);
     if (gameData === undefined || gameData === null) {
       this.gameData = Object.assign({}, GAME_DATA);

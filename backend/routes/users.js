@@ -3,12 +3,17 @@ const router = express.Router()
 const jwt = require("jsonwebtoken")
 const keys = require("../../config/keys")
 
-// Validator
-const validateInput = require("../validation/login")
+// Middleware
+const validateInput = require("../middleware/loginValidator")
+const authenticateJWT = require("../middleware/authenticateToken")
 // Model
 const User = require("../models/User")
 
-router.post("/login", (req, res) => {
+/////////////////
+// Login Route //
+/////////////////
+// This route is responsible for logging users in or registering them
+router.post("/", authenticateJWT, (req, res) => {
     // Validate the input
     const {errors, isValid} = validateInput(req.body)
 
@@ -49,5 +54,6 @@ router.post("/login", (req, res) => {
         )
     })
 })
+
 
 module.exports = router
