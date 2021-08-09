@@ -1,7 +1,9 @@
 /*
-  This file is included as a sample reference for the game. This is implemented as if there was no backend API, so it would not be a valid implementation as the NodeJS backend would have no concept of window or localStorage, but could easily be readapted to live on the server for requests.
+  This file is included as a sample reference for the game. This is implemented 
+  as if there was no backend API, so it would not be a valid implementation as 
+  the NodeJS backend would have no concept of window or localStorage, but could 
+  easily be readapted to live on the server for requests.
 */
-
 const storage = window.localStorage;
 
 const GAME_DATA = {
