@@ -1,3 +1,4 @@
 module.exports = {
-    mongoURI: "PLACEHOLDER"
+    mongoURI: "mongodb+srv://kayra:3362@cluster0.hhctk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    secret: "secret"
 }

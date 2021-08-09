@@ -2,6 +2,10 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
+const passport = require("passport")
+
+// Import routes
+const users = require("./backend/routes/users")
 
 // Backend
 const port = 3000
@@ -20,6 +24,14 @@ mongoose.connect(
 )
 .then(() => {console.log("Database connected")})
 .catch(err => console.log(err))
+
+
+// Middleware
+backend.use(passport.initialize())
+require("./config/passport")(passport)
+
+// Enable Routes
+backend.use("/api/users", users)
 
 backend.listen(port, () => {
     console.log(`Server running on port ${port}`)
