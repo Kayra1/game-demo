@@ -8,7 +8,7 @@ const passport = require("passport")
 const users = require("./backend/routes/users")
 
 // Backend
-const port = 3000
+const port = 3001
 const backend = express()
 backend.use(
   bodyParser.urlencoded(

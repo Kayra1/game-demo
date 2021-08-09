@@ -6,6 +6,7 @@ const keys = require("../../config/keys")
 // Middleware
 const validateInput = require("../middleware/loginValidator")
 const authenticateJWT = require("../middleware/authenticateToken")
+
 // Model
 const User = require("../models/User")
 
@@ -26,7 +27,9 @@ router.post("/", authenticateJWT, (req, res) => {
         if (!user){
             const newUser = new User({
                 name: req.body.name,
-                password: req.body.password
+                password: req.body.password,
+                wins: 0,
+                losses: 0
             })
             newUser.save()
             .catch(err => console.log(err))
