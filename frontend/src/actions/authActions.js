@@ -21,12 +21,12 @@ export const loginUser = userData => dispatch => {
             const decoded = jwt_decode(token)
             dispatch(setCurrentUser(decoded))
         })
-        .catch(err => {
+        .catch(err => 
             dispatch({
                 type: GET_ERRORS,
                 payload: err.response.data
             })
-        })
+        )
 }
 
 // Setting logged in user
@@ -45,7 +45,7 @@ export const setUserLoading = () => {
 }
 
 // Logging user out (no need to do anything serverside)
-export const logoutUser = () => {
+export const logoutUser = () => dispatch => {
     localStorage.removeItem("jwtToken")
     setAuthToken(false)
     dispatch(setCurrentUser({}))
