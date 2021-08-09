@@ -31,7 +31,7 @@ backend.use(passport.initialize())
 require("./config/passport")(passport)
 
 // Enable Routes
-backend.use("/api/users", users)
+backend.use("/", users)
 
 backend.listen(port, () => {
     console.log(`Server running on port ${port}`)

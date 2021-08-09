@@ -11,6 +11,7 @@ const User = require("../models/User")
 router.post("/login", (req, res) => {
     // Validate the input
     const {errors, isValid} = validateInput(req.body)
+
     if (!isValid) {
         return res.status(400).json(errors)
     }
