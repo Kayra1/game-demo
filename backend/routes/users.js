@@ -47,8 +47,6 @@ router.post("/login", (req, res) => {
             wins: user.wins,
             losses: user.losses
         }
-        console.log(user)
-        console.log(payload)
 
         jwt.sign(
             payload,
