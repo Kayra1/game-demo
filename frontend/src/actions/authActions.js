@@ -1,4 +1,3 @@
-import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 
 import {
@@ -19,14 +18,12 @@ export const loginUser = userData => dispatch => {
     })
     .then(res => res.json())
     .then(data => {
-            // Save token for use in axios
+            // Save token for use
             const {token} = data
             localStorage.setItem("jwtToken", token);
-            setAuthToken(token)
 
             // Decode for user data
             const decoded = jwt_decode(token)
-            console.log("DECODING")
             console.log(decoded)
             dispatch(setCurrentUser(decoded))
         })
@@ -56,6 +53,5 @@ export const setUserLoading = () => {
 // Logging user out (no need to do anything serverside)
 export const logoutUser = () => dispatch => {
     localStorage.removeItem("jwtToken")
-    setAuthToken(false)
     dispatch(setCurrentUser({}))
 }

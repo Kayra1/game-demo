@@ -7,6 +7,7 @@ const cors = require("cors")
 
 // Import routes
 const users = require("./backend/routes/users")
+const game  = require("./backend/routes/game")
 
 // Backend
 const port = 3001
@@ -30,6 +31,7 @@ backend.use(cors())
 
 // Enable Routes
 backend.use("/", users)
+backend.use("/", game)
 
 backend.listen(port, () => {
     console.log(`Server running on port ${port}`)

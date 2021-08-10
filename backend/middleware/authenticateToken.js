@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const secret = require("../../config/keys")
+const keys = require("../../config/keys")
 
 // Check if the JWT is valid
 authenticateToken = (req, res, next) => {
@@ -9,11 +9,9 @@ authenticateToken = (req, res, next) => {
     // Redirect if not valid
     if (token == null) return res.redirect("/")
 
-    jwt.verify(token, secret, (err, user) => {
-        console.log(err)
+    jwt.verify(token, keys.secret, (err, user) => {
 
         if (err) return res.redirect("/")
-
         req.user = user
 
         next()

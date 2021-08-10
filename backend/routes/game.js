@@ -16,10 +16,10 @@ router.post("/send-result", authenticateJWT, (req, res) => {
     let win = req.body.answer == colorChoice
 
     // Update the database
-    let res;
-    if (win) res = await User.updateOne({ name: user.name }, {wins: `${parseInt(user.wins)++}`})
-    else res = await User.updateOne( { name: user.name }, {losses: `${parseInt(user.losses)++}`})
-    if (res.n == 0) console.log("This user isn't in the db")
+    let DBres;
+    if (win) DBres = User.updateOne({ name: user.name }, {wins: `${parseInt(user.wins)++}`})
+    else DBres = User.updateOne( { name: user.name }, {losses: `${parseInt(user.losses)++}`})
+    if (DBres.n == 0) console.log("This user isn't in the db")
     
     // Generate result and return the last round's result
     nextRound = generateRound()
@@ -45,10 +45,7 @@ var colorChoice = 0
 const generateRound = () => {
     const randomColors = [];
     for (let i = 0; i < 6; i++) {
-        randomColors.push(`#
-            ${random255Hex()}
-            ${random255Hex()}
-            ${random255Hex()}`)
+        randomColors.push(`#${random255Hex()}${random255Hex()}${random255Hex()}`)
     }
     colorChoice = `${random5}:${randomColors[random5]}`;
 
@@ -63,3 +60,5 @@ const generateRound = () => {
     }
     return gameData
 }
+
+module.exports = router
