@@ -33,7 +33,7 @@ router.post("/send-result", authenticateJWT, (req, res) => {
 
 // Generate random colors
 const random255Hex = () => {
-    return parseInt(Math.floor(Math.random() * 256), 16);
+    return Math.floor(Math.random() * 256).toString(16);
 };
 // Generate a random index
 const random5 = () => {
@@ -41,16 +41,16 @@ const random5 = () => {
 };
 
 // Generate a round of the game
-var colorChoice = 0
+var colorChoice = ""
 const generateRound = () => {
     const randomColors = [];
     for (let i = 0; i < 6; i++) {
         randomColors.push(`#${random255Hex()}${random255Hex()}${random255Hex()}`)
     }
-    colorChoice = `${random5}:${randomColors[random5]}`;
+    colorChoice = `${random5()}:${randomColors[random5()]}`;
 
-    const SFtime = moment().tz("America/Los_Angeles")
-    const NYtime = moment().tz("America/New_York")
+    const SFtime = moment().tz("America/Los_Angeles");
+    const NYtime = moment().tz("America/New_York");
 
     let gameData = {
         colors: randomColors,

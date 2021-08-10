@@ -23,9 +23,6 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <div>
-          Hello World
-        </div>
         <Route exact path="/login" component={Login}/>
 
         <Switch>

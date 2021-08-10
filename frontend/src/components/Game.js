@@ -3,9 +3,9 @@ import PropTypes from "prop-types"
 import { connect } from "react-redux";
 import "../game.css"
 
-const getGameData = () => {
+const getGameData = async () => {
     var gameData;
-    let res = fetch("http://192.168.1.170:3001/start-game", {
+    let res = await fetch("http://192.168.1.170:3001/start-game", {
         method:"GET",
         headers: {
             'Accept': 'application/json',
@@ -15,25 +15,60 @@ const getGameData = () => {
     })
     .then(res => res.json())
     .then(data => {
-        console.log(data)
+        gameData = data
     })
 
-    console.log(gameData)
+    return gameData
 }
 
 class Game extends Component {
     constructor() {
         super();
 
-        let firstGame = getGameData()
-        console.log(firstGame)
+        this.state = {
+            colors: [
+                "#000000", "#000000", "#000000",
+                "#000000", "#000000", "#000000"],
+            choice: "0",
+            sftime: "00:00 AM",
+            nytime: "00:00 AM",
+            previousResult: false
+        }
+    }
+
+    componentDidMount() {
+        getGameData()
+        .then(gameData => {
+            this.setState(gameData)
+        })
+    }
+
+    onChoose = i => {
+        // Make a request to the server
     }
 
     render() {
         const {user} = this.props.auth
         return (
             <div>
-                Hello, {this.state}
+                <h1>{user.name}'s COLOR GRID</h1>
+                <h2>WINS: {user.wins}, LOSSES, {user.losses}</h2>
+                
+                <div>
+                    <div className="top-left">Color {this.state.colors[0]}</div>
+                    <div className="top-right">Color {this.state.colors[1]}</div>
+                    <div className="mid-left">Color {this.state.colors[2]}</div>
+                    <div className="mid-right">Color {this.state.colors[3]}</div>
+                    <div className="bot-left">Color {this.state.colors[4]}</div>
+                    <div className="bot-right">Color {this.state.colors[5]}</div>
+                </div>
+
+                <div>
+                    <p>San Francisco Time: {this.sftime}</p>
+                    <p>New York Time: {this.nytime}</p>
+                </div>
+
+
             </div>
         )
     }
