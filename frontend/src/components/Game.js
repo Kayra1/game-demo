@@ -45,7 +45,6 @@ class Game extends Component {
         getGameData()
         .then(gameData => {
             this.setState(gameData)
-            console.log(this.state)
         })
     }
 
@@ -69,7 +68,6 @@ class Game extends Component {
         .then(res => res.json())
         .then(data => {
             this.setState(data)
-            console.log(data)
         })
     }
 
@@ -79,22 +77,47 @@ class Game extends Component {
                 <h1>{this.state.user.name}'s COLOR GRID</h1>
                 <h2>WINS: {this.state.user.wins}, LOSSES, {this.state.user.losses}</h2>
                 
-                <div>
+                <div className="grid-container">
                     <div className="center">
-                        Color {this.state.colors[parseInt(this.state.choice)]}</div>
+                        <h3>FIND THIS COLOR</h3>
+                        <p>{`rgb(${parseInt(this.state.colors[parseInt(this.state.choice)].slice(1,3), 16)}, ${parseInt(this.state.colors[parseInt(this.state.choice)].slice(3,5), 16)}, ${parseInt(this.state.colors[parseInt(this.state.choice)].slice(5,7), 16)})`}</p>
+                    </div>
 
-                    <div className="top-left" onClick={this.onClick} id={0}>
-                        Color {this.state.colors[0]}</div>
-                    <div className="top-right" onClick={this.onClick} id={1}>
-                        Color {this.state.colors[1]}</div>
-                    <div className="mid-left" onClick={this.onClick} id={2}>
-                        Color {this.state.colors[2]}</div>
-                    <div className="mid-right" onClick={this.onClick} id={3}>
-                        Color {this.state.colors[3]}</div>
-                    <div className="bot-left" onClick={this.onClick} id={4}>
-                        Color {this.state.colors[4]}</div>
-                    <div className="bot-right" onClick={this.onClick} id={5}>
-                        Color {this.state.colors[5]}</div>
+                    <div className="top-left" onClick={this.onClick} id={0}
+                        style={{
+                            backgroundColor: `${this.state.colors[0]}`
+                        }}
+                        >
+                        Color 1</div>
+                    <div className="top-right" onClick={this.onClick} id={1}
+                        style={{
+                            backgroundColor: `${this.state.colors[1]}`
+                        }}>
+                        Color 2</div>
+                    <div className="mid-left" onClick={this.onClick} id={2}
+                        style={{
+                            backgroundColor: `${this.state.colors[2]}`
+                        }}
+                        >
+                        Color 3</div>
+                    <div className="mid-right" onClick={this.onClick} id={3}
+                        style={{
+                            backgroundColor: `${this.state.colors[3]}`
+                        }}
+                        >
+                        Color 4</div>
+                    <div className="bot-left" onClick={this.onClick} id={4}
+                        style={{
+                            backgroundColor: `${this.state.colors[4]}`
+                        }}
+                        >
+                        Color 5</div>
+                    <div className="bot-right" onClick={this.onClick} id={5}
+                        style={{
+                            backgroundColor: `${this.state.colors[5]}`
+                        }}
+                        >
+                        Color 6</div>
                 </div>
 
                 <div>

@@ -44,10 +44,6 @@ router.post("/send-result", authenticateJWT, (req, res) => {
     })
     .then()
     .then(data => {
-        console.log(data)
-        console.log(DBres)
-        console.log(DBres.nModified)
-
         output.user.wins = newWins.toString()
         output.user.losses = newLoss.toString()
 
