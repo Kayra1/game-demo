@@ -26,6 +26,11 @@ class Game extends Component {
         super();
 
         this.state = {
+            user: {
+                name: "Loading...",
+                wins: "Loading...",
+                losses: "Loading..."
+            },
             colors: [
                 "#000000", "#000000", "#000000",
                 "#000000", "#000000", "#000000"],
@@ -40,32 +45,60 @@ class Game extends Component {
         getGameData()
         .then(gameData => {
             this.setState(gameData)
+            console.log(this.state)
         })
     }
 
-    onChoose = i => {
+    onClick = async (e) => {
         // Make a request to the server
+        let i = e.target.id;
+    
+        let res = await fetch("http://192.168.1.170:3001/send-result", {
+            method:"POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization': localStorage.getItem("jwtToken")
+            },
+            body: JSON.stringify({
+                answer: `${i}`,
+                wins: this.state.user.wins,
+                losses: this.state.user.losses
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            this.setState(data)
+        })
     }
 
     render() {
-        const {user} = this.props.auth
         return (
             <div>
-                <h1>{user.name}'s COLOR GRID</h1>
-                <h2>WINS: {user.wins}, LOSSES, {user.losses}</h2>
+                <h1>{this.state.user.name}'s COLOR GRID</h1>
+                <h2>WINS: {this.state.user.wins}, LOSSES, {this.state.user.losses}</h2>
                 
                 <div>
-                    <div className="top-left">Color {this.state.colors[0]}</div>
-                    <div className="top-right">Color {this.state.colors[1]}</div>
-                    <div className="mid-left">Color {this.state.colors[2]}</div>
-                    <div className="mid-right">Color {this.state.colors[3]}</div>
-                    <div className="bot-left">Color {this.state.colors[4]}</div>
-                    <div className="bot-right">Color {this.state.colors[5]}</div>
+                    <div className="center">
+                        Color {this.state.colors[parseInt(this.state.choice)]}</div>
+
+                    <div className="top-left" onClick={this.onClick} id={0}>
+                        Color {this.state.colors[0]}</div>
+                    <div className="top-right" onClick={this.onClick} id={1}>
+                        Color {this.state.colors[1]}</div>
+                    <div className="mid-left" onClick={this.onClick} id={2}>
+                        Color {this.state.colors[2]}</div>
+                    <div className="mid-right" onClick={this.onClick} id={3}>
+                        Color {this.state.colors[3]}</div>
+                    <div className="bot-left" onClick={this.onClick} id={4}>
+                        Color {this.state.colors[4]}</div>
+                    <div className="bot-right" onClick={this.onClick} id={5}>
+                        Color {this.state.colors[5]}</div>
                 </div>
 
                 <div>
-                    <p>San Francisco Time: {this.sftime}</p>
-                    <p>New York Time: {this.nytime}</p>
+                    <p>San Francisco Time: {this.state.sftime}</p>
+                    <p>New York Time: {this.state.nytime}</p>
                 </div>
 
 
