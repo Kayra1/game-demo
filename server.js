@@ -3,6 +3,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
 const passport = require("passport")
+const cors = require("cors")
 
 // Import routes
 const users = require("./backend/routes/users")
@@ -29,6 +30,7 @@ mongoose.connect(
 // Middleware
 backend.use(passport.initialize())
 require("./config/passport")(passport)
+backend.use(cors())
 
 // Enable Routes
 backend.use("/", users)

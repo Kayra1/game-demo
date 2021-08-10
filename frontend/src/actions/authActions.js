@@ -10,7 +10,7 @@ import {
 
 // Action to log user in
 export const loginUser = userData => dispatch => {
-    axios.post("/login", userData)
+    axios.post("http://192.168.1.170:3001/login", userData)
         .then(res => {
             // Save token for use in axios
             const {token} = res.data

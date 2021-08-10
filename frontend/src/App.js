@@ -3,6 +3,7 @@ import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser } from "./actions/authActions";
 import store from "./store"
+import { Provider } from "react-redux";
 
 import Login from "./components/Login"
 import Account from "./components/Account";
@@ -21,6 +22,7 @@ if (localStorage.jwtToken) {
 
 function App() {
   return (
+    <Provider store={store}>
       <Router>
         <div>
           Hello World
@@ -31,6 +33,7 @@ function App() {
           <PrivateRoute exact path="/account" component={Account} />
         </Switch>
       </Router>
+    </Provider>
   );
 }
 
