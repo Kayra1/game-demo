@@ -7,28 +7,43 @@
 
 ## Backend Routes
 
-### POST "/"
+### POST "/login"
 
 This route will be responsible for logging users in. If the user is logged in,
 it will show a button to take them to the game. If they're not, it will prompt
 them to log in.
 
-### GET "/game"
+### GET "/start-game"
 
 This route will verify if the user is logged in, and if they are, will enable them
 to play the game by returning the required information.
 
-### POST "/save-game"
+### POST "/send-result"
 
-This route will save the user's progress to the database and redirect the user
-to the main page.
+This route will save the user's choice in the database and give the information
+for the next round
 
-### GET "/logout"
+## Frontend Routes
 
-This route will redirect the user to the homepage. Since the authentication is 
-done using JWT's, the server doesn't need to do anything to log the user out.
-Instead, the frontend can just delete the cookie that was saved by the website.
+### GET "/"
 
+This route will show the homepage of the website, which is currently empty. The
+navbar will show account and game buttons if the user is logged in, or the log in
+button
+
+### GET "/login"
+
+This route will allow the user to enter their log in details.
+
+### GET "/account"
+
+This route will show the user's stats and allow them to log out. 
+Since the system uses JWT's, logging out is as simple as removing the token from
+local storage. There is no need to send any information to the backend.
+
+### GET "/game"
+
+This route will allow you to start the game
 
 ## Known Bugs
 
