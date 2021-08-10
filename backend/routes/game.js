@@ -31,23 +31,28 @@ router.post("/send-result", authenticateJWT, (req, res) => {
     let output = generateRound()
     output["user"] = req.user
 
-    // Update the database and local win/loss ratio
-    let DBres;
-    if (win) {
-        let newWins = parseInt(wins) + 1
-        DBres = User.updateOne({ name: req.user.name }, {wins: newWins.toString()})
-        console.log(DBres)
-        output.user.wins = newWins.toString()
-    }
-    else {
-        let newLoss = parseInt(losses) + 1
-        DBres = User.updateOne( { name: req.user.name }, {losses: newLoss.toString()})
-        console.log(DBres)
-        output.user.losses = newLoss.toString()
-    }
-    if (DBres.n == 0) console.log("This user isn't in the db")
+    // Update win/loss ratio
+    let newWins = parseInt(wins)
+    let newLoss = parseInt(losses)
+    if (win) newWins++;
+    else newLoss++;
     
-    res.json(output)
+    // Save new ratio to database
+    let DBres = User.updateOne({name: req.user.name}, {
+        wins: newWins.toString(),
+        losses: newLoss.toString()
+    })
+    .then()
+    .then(data => {
+        console.log(data)
+        console.log(DBres)
+        console.log(DBres.nModified)
+
+        output.user.wins = newWins.toString()
+        output.user.losses = newLoss.toString()
+
+        res.json(output)
+    })
 })
 
 //////////////////////
