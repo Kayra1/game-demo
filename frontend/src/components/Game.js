@@ -125,7 +125,6 @@ class Game extends Component {
                     <p>New York Time: {this.state.nytime}</p>
                 </div>
 
-
             </div>
         )
     }

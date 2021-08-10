@@ -4,6 +4,8 @@ import { setCurrentUser } from "./actions/authActions";
 import store from "./store"
 import { Provider } from "react-redux";
 
+import { Link } from "react-router-dom";
+
 import Login from "./components/Login"
 import Account from "./components/Account";
 import Game from "./components/Game"
@@ -16,13 +18,23 @@ if (localStorage.jwtToken) {
   store.dispatch(setCurrentUser(decoded))
 }
 
-
-// Have to check for expired 
+// Have to check for expired
 
 function App() {
   return (
     <Provider store={store}>
       <Router>
+        <nav style={{display:"flex", flexDirection:"row"}}>
+          {localStorage.jwtToken ? 
+            (
+              <>
+                <Link to="/game">Start Game</Link>
+                <div style={{width: "380px"}}></div>
+                <Link to="/account">Account</Link>
+              </>
+            ) :
+            (<Link to="/login">Log In</Link>)}
+        </nav>
         <Route exact path="/login" component={Login}/>
 
         <Switch>
