@@ -29,8 +29,8 @@ router.post("/login", (req, res) => {
             const newUser = new User({
                 name: req.body.name,
                 password: req.body.password,
-                wins: 0,
-                losses: 0
+                wins: "0",
+                losses: "0"
             })
             newUser.save()
             .catch(err => console.log(err))
@@ -40,8 +40,6 @@ router.post("/login", (req, res) => {
         if (user.password != req.body.password){
             return res.status(400).json({ err: "Wrong Password or User exists" })
         }
-        
-        console.log(user)
 
         // Sign JWT
         const payload = {
@@ -49,6 +47,9 @@ router.post("/login", (req, res) => {
             wins: user.wins,
             losses: user.losses
         }
+        console.log(user)
+        console.log(payload)
+
         jwt.sign(
             payload,
             keys.secret,

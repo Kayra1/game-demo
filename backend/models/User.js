@@ -9,6 +9,14 @@ const UserSchema = new Schema( {
     password: {
         type: String,
         required: true
+    },
+    wins: {
+        type: String,
+        required: true
+    },
+    losses: {
+        type: String,
+        required: true
     }
 })
 
