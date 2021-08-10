@@ -2,8 +2,6 @@ const validator = require("validator")
 
 module.exports = validateInput = (data) => {
     var errors = {}
-
-    console.log(data)
     
     if (validator.isEmpty(data.name)) {
         errors.name = "Name field missing"

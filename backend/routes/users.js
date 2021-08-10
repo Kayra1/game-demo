@@ -16,6 +16,8 @@ const User = require("../models/User")
 // This route is responsible for logging users in or registering them
 router.post("/login", (req, res) => {
     // Validate the input
+    console.log(req.body)
+
     const {errors, isValid} = validateInput(req.body)
     if (!isValid) {
         return res.status(400).json(errors)
@@ -38,10 +40,14 @@ router.post("/login", (req, res) => {
         if (user.password != req.body.password){
             return res.status(400).json({ err: "Wrong Password or User exists" })
         }
+        
+        console.log(user)
 
         // Sign JWT
         const payload = {
-            name: user.name
+            name: user.name,
+            wins: user.wins,
+            losses: user.losses
         }
         jwt.sign(
             payload,

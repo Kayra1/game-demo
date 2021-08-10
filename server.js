@@ -11,11 +11,7 @@ const users = require("./backend/routes/users")
 // Backend
 const port = 3001
 const backend = express()
-backend.use(
-  bodyParser.urlencoded(
-    {extended: false}
-  )
-)
+backend.use(bodyParser.json())
 
 // Database
 const dbURI = require("./config/keys").mongoURI

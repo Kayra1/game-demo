@@ -1,4 +1,3 @@
-import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 
@@ -10,21 +9,31 @@ import {
 
 // Action to log user in
 export const loginUser = userData => dispatch => {
-    axios.post("http://192.168.1.170:3001/login", userData)
-        .then(res => {
+    fetch("http://192.168.1.170:3001/login", {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    })
+    .then(res => res.json())
+    .then(data => {
             // Save token for use in axios
-            const {token} = res.data
+            const {token} = data
             localStorage.setItem("jwtToken", token);
             setAuthToken(token)
 
             // Decode for user data
             const decoded = jwt_decode(token)
+            console.log("DECODING")
+            console.log(decoded)
             dispatch(setCurrentUser(decoded))
         })
         .catch(err => 
             dispatch({
                 type: GET_ERRORS,
-                payload: err.response.data
+                payload: err
             })
         )
 }

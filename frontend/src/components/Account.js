@@ -11,10 +11,11 @@ class Account extends Component {
 
     render() {
         const {user} = this.props.auth
-        console.log(user)
         return (
             <div>
                 <h1>Name: {user.name}</h1>
+                <h1>Wins: {user.wins}</h1>
+                <h1>Losses: {user.losses}</h1>
                 <button onClick={this.onLogoutClick}>Logout</button>
             </div>
         )
