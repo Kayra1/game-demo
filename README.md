@@ -1,5 +1,10 @@
 # KiwiCo Small Game
 
+### Installation & Running
+`npm install` on the root directory
+`npm install` in the frontend directory
+`npm run dev` in the root directory
+
 ## Backend Routes
 
 ### POST "/"
@@ -23,3 +28,8 @@ to the main page.
 This route will redirect the user to the homepage. Since the authentication is 
 done using JWT's, the server doesn't need to do anything to log the user out.
 Instead, the frontend can just delete the cookie that was saved by the website.
+
+
+## Known Bugs
+
+* After logout, the navbar doesn't update until a refresh
