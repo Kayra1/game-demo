@@ -1,5 +1,5 @@
 {
-  "name": "kiwico-homework-kayra-gemalmaz",
+  "name": "homework-kayra-gemalmaz",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HDTran/kiwico-homework-kayra-gemalmaz.git"
+    "url": ""
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/HDTran/kiwico-homework-kayra-gemalmaz/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/HDTran/kiwico-homework-kayra-gemalmaz#readme",
+  "homepage": "",
   "dependencies": {
     "body-parser": "^1.19.0",
     "concurrently": "^6.2.1",

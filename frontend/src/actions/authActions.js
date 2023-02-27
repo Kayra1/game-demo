@@ -8,7 +8,7 @@ import {
 
 // Action to log user in
 export const loginUser = userData => dispatch => {
-    fetch("http://192.168.1.170:3001/login", {
+    fetch("http://localhost:3001/login", {
         method: "POST",
         headers: {
             'Accept': 'application/json',

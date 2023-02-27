@@ -56,6 +56,6 @@ Bonus points for handling more.
 
 ## Completion
 
-Email Huy (huytran@kiwico.com) with the update that you're complete! If you deployed the project live somewhere, share the live URL. Attach any notes or work anywhere else that isn't in this repository so that you show your work and help us understand your thinking and methodology.
+Email Huy with the update that you're complete! If you deployed the project live somewhere, share the live URL. Attach any notes or work anywhere else that isn't in this repository so that you show your work and help us understand your thinking and methodology.
 
 Celebrate!

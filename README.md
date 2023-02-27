@@ -1,4 +1,4 @@
-# KiwiCo Small Game
+# Small Game
 
 ### Installation & Running
 * `npm install` on the root directory
@@ -7,7 +7,7 @@
 
 # Preface
 
-This is a simple game with JWT token authentication and authorization implemented using React and Redux for the frontend and Node.js and Express for the backend. Please excuse some of the package bloat, as this project was done in a total of 12 hours. Overall, it was a fun project that was a quick rundown of some of the most important features in modern web development.
+This is a simple game with JWT token authentication and authorization implemented using React and Redux for the frontend and Node.js and Express for the backend in 12 hours. Overall, it was a fun project that was a quick rundown of some of the most important features in modern web development.
 
 # Components
 

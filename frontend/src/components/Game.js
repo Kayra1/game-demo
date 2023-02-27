@@ -5,7 +5,7 @@ import "../game.css"
 
 const getGameData = async () => {
     var gameData;
-    let res = await fetch("http://192.168.1.170:3001/start-game", {
+    let res = await fetch("http://localhost:3001/start-game", {
         method:"GET",
         headers: {
             'Accept': 'application/json',
@@ -52,7 +52,7 @@ class Game extends Component {
         // Make a request to the server
         let i = e.target.id;
     
-        let res = await fetch("http://192.168.1.170:3001/send-result", {
+        let res = await fetch("http://localhost:3001/send-result", {
             method:"POST",
             headers: {
                 'Accept': 'application/json',
